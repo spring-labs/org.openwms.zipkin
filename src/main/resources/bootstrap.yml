@@ -8,15 +8,6 @@ spring:
       discovery:
         enabled: true
         service-id: openwms-config
-  h2:
-    console:
-      enabled: true
-      settings:
-        web-allow-others: true
-  jpa:
-    generate-ddl: true
-    hibernate:
-      ddl-auto: create-drop
 
 owms:
   eureka:
@@ -24,7 +15,7 @@ owms:
     url: http://user:sa@localhost:8761
 
 server:
-  port: ${PORT:8085}
+  port: ${PORT:9411}
 
 security:
   user:
@@ -42,6 +33,8 @@ eureka:
       username: user
       password: ${security.user.password}
       protocol: http
+banner:
+  charset:
 
 ---
 spring:
