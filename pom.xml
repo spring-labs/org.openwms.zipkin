@@ -30,11 +30,6 @@
 		</site>
 	</distributionManagement>
 
-	<properties>
-		<spring-boot.version>1.5.3.RELEASE</spring-boot.version>
-		<spring-cloud.version>Dalston.RELEASE</spring-cloud.version>
-	</properties>
-
 	<scm>
 		<url>https://github.com/spring-labs/org.openwms.zipkin</url>
 		<connection>scm:git:git://github.com/spring-labs/org.openwms.zipkin.git</connection>
@@ -63,23 +58,18 @@
 			<scope>runtime</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
+			<groupId>io.zipkin.java</groupId>
+			<artifactId>zipkin-server</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-zipkin</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-sleuth</artifactId>
 		</dependency>
 	</dependencies>
-
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>${spring-cloud.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
 
 	<repositories>
 		<repository>
