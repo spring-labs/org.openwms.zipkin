@@ -1,14 +1,17 @@
 #!groovy
 
 node {
-  try {
     def mvnHome
     stage('\u27A1 Preparation') {
       git 'git@github.com:spring-labs/org.openwms.zipkin.git'
       mvnHome = tool 'M3'
+      cmdLine = '-Dci.buildNumber=${BUILD_NUMBER} -Ddocumentation.dir=${WORKSPACE}/target'
     }
     stage('\u27A1 Build') {
-      sh "'${mvnHome}/bin/mvn' clean install -Psordocs,sonatype -U"
+      configFileProvider(
+          [configFile(fileId: 'maven-local-settings', variable: 'MAVEN_SETTINGS')]) {
+            sh "'${mvnHome}/bin/mvn' -s $MAVEN_SETTINGS clean deploy ${cmdLine} -Psonatype -U"
+      }
     }
     stage('\u27A1 Heroku Staging') {
       sh '''
@@ -22,10 +25,4 @@ node {
     stage('\u27A1 Results') {
       archive 'target/*.jar'
     }
-    stage('\u27A1 Sonar') {
-      sh "'${mvnHome}/bin/mvn' clean org.jacoco:jacoco-maven-plugin:prepare-agent sonar:sonar -Djacoco.propertyName=jacocoArgLine -Pjenkins"
-    }
-  } finally {
-    junit allowEmptyResults: true, testResults: '**/target/surefire-reports/TEST-*.xml'
-  }
 }
