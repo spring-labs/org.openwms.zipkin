@@ -18,7 +18,7 @@ node {
           if git remote | grep heroku > /dev/null; then
              git remote rm heroku
           fi
-          git remote add heroku https://:${HEROKU_API_KEY}@git.heroku.com/openwms-zipkin.git
+          git remote add heroku https://:${DGMXCH_HEROKU_API_KEY}@git.heroku.com/openwms-zipkin.git
           git push heroku master -f
       '''
     }
