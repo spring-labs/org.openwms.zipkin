@@ -8,6 +8,7 @@
     <property name="LOG_TEMP" value="/tmp/owms" />
     <property name="MODULE_NAME" value="CORE" />
     <property name="SERVICE_NAME" value="ZIPKIN" />
+    <property name="LOG_FILE" value="${BUILD_FOLDER:-build}/${springAppName}"/>​
 
     <appender name="SYSLOG" class="ch.qos.logback.classic.sift.SiftingAppender">
         <discriminator>

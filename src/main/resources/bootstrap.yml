@@ -18,8 +18,7 @@ server:
   port: ${PORT:9411}
 
 security:
-  user:
-    # need to be overridden in the cloud environment props!
+  user:    # need to be overridden in the cloud environment props!
     password: sa
 
 eureka:
@@ -41,6 +40,8 @@ spring:
   profiles: CLOUD
   main:
     banner-mode: "OFF"
+  zipkin:
+    base-url: https://openwms-zipkin.herokuapp.com/
 
 eureka:
   instance:
